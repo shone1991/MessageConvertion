@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/unicalc" name="UniversalApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/sum/json">
+        <inSequence>
+            <log level="full" separator=",">
+                <property expression="get-property(&quot;MESSAGE_FORMAT&quot;)" name="messageFormat"/>
+            </log>
+            <payloadFactory description="Build Soap Request Payload" media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:my="http://test.com/my-soap-test" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <my:getSumRequest>
+                                <my:p1>$1</my:p1>
+                                <my:p2>$2</my:p2>
+                            </my:getSumRequest>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="json" expression="p1"/>
+                    <arg evaluator="json" expression="p2"/>
+                </args>
+            </payloadFactory>
+            <store messageStore="SumRequestMessageStore"/>
+            <log level="full" separator=","/>
+            <call>
+                <endpoint key="SumSoapEP"/>
+            </call>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/sum/xml">
+        <inSequence>
+            <log level="full" separator=","/>
+            <store messageStore="SumRequestMessageStore"/>
+            <header name="Action" scope="default" value="urn:getSum"/>
+            <call>
+                <endpoint key="SumSoapEP"/>
+            </call>
+            <property name="messageType" scope="axis2" type="STRING" value="application/xml"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

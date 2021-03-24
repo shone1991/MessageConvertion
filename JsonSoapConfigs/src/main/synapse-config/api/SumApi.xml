@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/calcsum" name="SumApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST GET">
+        <inSequence>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:my="http://test.com/my-soap-test" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <my:getSumRequest>
+                                <my:p1>$1</my:p1>
+                                <my:p2>$2</my:p2>
+                            </my:getSumRequest>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="json" expression="p1"/>
+                    <arg evaluator="json" expression="p2"/>
+                </args>
+            </payloadFactory>
+            <log level="full" separator=","/>
+            <call>
+                <endpoint key="SumSoapEP"/>
+            </call>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

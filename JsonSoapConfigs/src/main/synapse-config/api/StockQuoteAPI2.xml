@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/stockorder_api" name="JSONToSOAP" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST PUT GET">
+        <inSequence>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:ns="http://services.samples" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <ns:placeOrder>
+                                <ns:order>
+                                    <ns:symbol>$1</ns:symbol>
+                                    <ns:price>$2</ns:price>
+                                    <ns:quantity>$3</ns:quantity>
+                                </ns:order>
+                            </ns:placeOrder>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="json" expression="$.placeOrder.order.symbol"/>
+                    <arg evaluator="json" expression="$.placeOrder.order.price"/>
+                    <arg evaluator="json" expression="$.placeOrder.order.quantity"/>
+                </args>
+            </payloadFactory>
+            <log level="full"/>
+            <call>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>-1</progressionFactor>
+                            <maximumDuration>0</maximumDuration>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </address>
+                </endpoint>
+            </call>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

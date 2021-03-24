@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="SumSoapEP" xmlns="http://ws.apache.org/ns/synapse">
+    <address format="soap11" uri="http://172.16.30.61:8787/soapWS">
+        <suspendOnFailure>
+            <initialDuration>0</initialDuration>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>10</retriesBeforeSuspension>
+        </markForSuspension>
+    </address>
+</endpoint>
