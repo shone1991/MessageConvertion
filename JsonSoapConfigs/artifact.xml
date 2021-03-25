@@ -8,13 +8,28 @@
     <artifact name="SumSoapEP" groupId="com.example.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/SumSoapEP.xml</file>
     </artifact>
-    <artifact name="proxy" groupId="com.example.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
-        <file>src/main/synapse-config/proxy-services/proxy.xml</file>
-    </artifact>
     <artifact name="UniversalApi" groupId="com.example.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/api/UniversalApi.xml</file>
     </artifact>
     <artifact name="SumRequestMessageStore" groupId="com.example.message-store" version="1.0.0" type="synapse/message-store" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/message-stores/SumRequestMessageStore.xml</file>
+    </artifact>
+    <artifact name="fault" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/fault.xml</file>
+    </artifact>
+    <artifact name="delivery_fail" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/delivery_fail.xml</file>
+    </artifact>
+    <artifact name="GuranteedDeliveryProxy" groupId="com.example.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/GuranteedDeliveryProxy.xml</file>
+    </artifact>
+    <artifact name="ScheduledProcessor" groupId="com.example.message-processors" version="1.0.0" type="synapse/message-processors" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/message-processors/ScheduledProcessor.xml</file>
+    </artifact>
+    <artifact name="DeliverySequence" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/DeliverySequence.xml</file>
+    </artifact>
+    <artifact name="Main" groupId="com.example.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/Main.xml</file>
     </artifact>
 </artifacts>

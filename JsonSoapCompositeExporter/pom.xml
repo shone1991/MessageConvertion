@@ -10,12 +10,17 @@
   <description>JsonSoapCompositeExporter</description>
   <properties>
     <com.example.api_._StockQuoteAPI2>capp/EnterpriseServiceBus</com.example.api_._StockQuoteAPI2>
+    <com.example.sequence_._fault>capp/EnterpriseServiceBus</com.example.sequence_._fault>
+    <com.example.message-processors_._ScheduledProcessor>capp/EnterpriseServiceBus</com.example.message-processors_._ScheduledProcessor>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
-    <com.example.proxy-service_._proxy>capp/EnterpriseServiceBus</com.example.proxy-service_._proxy>
+    <com.example.proxy-service_._GuranteedDeliveryProxy>capp/EnterpriseServiceBus</com.example.proxy-service_._GuranteedDeliveryProxy>
     <com.example.message-store_._SumRequestMessageStore>capp/EnterpriseServiceBus</com.example.message-store_._SumRequestMessageStore>
     <com.example.api_._SumApi>capp/EnterpriseServiceBus</com.example.api_._SumApi>
+    <com.example.sequence_._delivery_fail>capp/EnterpriseServiceBus</com.example.sequence_._delivery_fail>
     <com.example.endpoint_._SumSoapEP>capp/EnterpriseServiceBus</com.example.endpoint_._SumSoapEP>
+    <com.example.sequence_._Main>capp/EnterpriseServiceBus</com.example.sequence_._Main>
     <com.example.api_._UniversalApi>capp/EnterpriseServiceBus</com.example.api_._UniversalApi>
+    <com.example.sequence_._DeliverySequence>capp/EnterpriseServiceBus</com.example.sequence_._DeliverySequence>
   </properties>
   <dependencies>
     <dependency>
@@ -31,26 +36,56 @@
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>com.example.endpoint</groupId>
-      <artifactId>SumSoapEP</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>com.example.proxy-service</groupId>
-      <artifactId>proxy</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
       <groupId>com.example.api</groupId>
       <artifactId>UniversalApi</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
     <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>SumSoapEP</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.message-processors</groupId>
+      <artifactId>ScheduledProcessor</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
       <groupId>com.example.message-store</groupId>
       <artifactId>SumRequestMessageStore</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.proxy-service</groupId>
+      <artifactId>GuranteedDeliveryProxy</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>DeliverySequence</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>Main</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>delivery_fail</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.sequence</groupId>
+      <artifactId>fault</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messageProcessor class="org.apache.synapse.message.processors.forward.ScheduledMessageForwardingProcessor" messageStore="SumRequestMessageStore" name="ScheduledProcessor" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="interval">10000</parameter>
+</messageProcessor>

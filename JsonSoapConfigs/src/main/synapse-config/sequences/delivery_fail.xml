@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="delivery_fail" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="full"/>
+    <enrich>
+        <source clone="true" property="mssg" type="property"/>
+        <target type="envelope"/>
+    </enrich>
+    <property name="target.endpoint" scope="default" type="STRING" value="SumSoapEP"/>
+    <store messageStore="SumRequestMessageStore"/>
+</sequence>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="DeliverySequence" onError="delivery_fail" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
+    <property name="OUT_ONLY" scope="default" type="STRING" value="true"/>
+    <enrich>
+        <source clone="true" type="envelope"/>
+        <target property="mssg" type="property"/>
+    </enrich>
+    <payloadFactory media-type="xml">
+        <format>
+            <soapenv:Envelope xmlns:my="http://test.com/my-soap-test" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                <soapenv:Header/>
+                <soapenv:Body>
+                    <my:getSumRequest>
+                        <my:p1>$1</my:p1>
+                        <my:p2>$2</my:p2>
+                    </my:getSumRequest>
+                </soapenv:Body>
+            </soapenv:Envelope>
+        </format>
+        <args>
+            <arg evaluator="json" expression="p1"/>
+            <arg evaluator="json" expression="p2"/>
+        </args>
+    </payloadFactory>
+    <send>
+        <endpoint key="SumSoapEP"/>
+    </send>
+</sequence>
